@@ -64,9 +64,11 @@ export default function CardDemo() {
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full">
-            Login
-          </Button>
+          <Link href={"/"} className="w-full">
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
+          </Link>
           <Button variant="outline" className="w-full">
             Login with Google
           </Button>

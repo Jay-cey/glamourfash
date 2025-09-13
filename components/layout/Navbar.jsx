@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import fash from "../../public/images/fash.png"
+import { Button } from "@/components/ui/button"
+
 
 export default function Navbar() {
   return (
@@ -17,6 +19,10 @@ export default function Navbar() {
                 <Link href={""} className="">Contact</Link>
             </ul>
         </div>
+
+        <Link href={"/auth/login"} className="-mt-3">
+          <Button variant="outline" className="hover:bg-char text-yellow-700">Login</Button>
+        </Link>
     </nav>
   )
 }
