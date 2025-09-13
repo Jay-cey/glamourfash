@@ -1,5 +1,3 @@
-// import { imageList } from "@/components/productsroll";
-
 const products = [
   {
     name: "Suit Dress",
@@ -13,6 +11,10 @@ const products = [
       {
         src: "/images/suit2.jpeg",
         alt: "Model wearing a black tailored suit dress.",
+      },
+      {
+        src: "/images/suit1.jpeg",
+        alt: "Model wearing a grey tailored suit dress.",
       },
     ],
     colors: [
@@ -46,6 +48,10 @@ const products = [
     images: [
       {
         src: "/images/corset2.jpeg",
+        alt: "Corset dress in pastel pink.",
+      },
+      {
+        src: "/images/corset3.jpeg",
         alt: "Corset dress in pastel pink.",
       },
     ],
@@ -82,6 +88,10 @@ const products = [
         src: "/images/casual2.jpeg",
         alt: "Casual midi dress in beige.",
       },
+      {
+        src: "/images/casual1.jpeg",
+        alt: "Casual midi dress in beige.",
+      },
     ],
     colors: [
       { id: "beige", name: "Beige", classes: "bg-yellow-100 checked:outline-yellow-400" },
@@ -116,6 +126,10 @@ const products = [
         src: "/images/cocktail2.jpeg",
         alt: "Cocktail dress in emerald green.",
       },
+      {
+        src: "/images/cocktail1.jpeg",
+        alt: "Cocktail dress in black.",
+      },
     ],
     colors: [
       { id: "emerald", name: "Emerald Green", classes: "bg-green-600 checked:outline-green-600" },
@@ -149,10 +163,15 @@ const products = [
         src: "/images/backless3.jpeg",
         alt: "Backless silk dress in silver.",
       },
+      {
+        src: "/images/backless1.jpeg",
+        alt: "Backless silk dress in white.",
+      },
     ],
     colors: [
       { id: "silver", name: "Silver", classes: "bg-gray-200 checked:outline-gray-400" },
       { id: "black", name: "Black", classes: "bg-gray-900 checked:outline-gray-900" },
+      { id: "white", name: "White", classes: "bg-white checked:outline-gray-300" },
       { id: "champagne", name: "Champagne", classes: "bg-yellow-50 checked:outline-amber-400" },
     ],
     sizes: [
@@ -181,6 +200,10 @@ const products = [
       {
         src: "/images/bandeau2.jpeg",
         alt: "Bandeau mini dress in white.",
+      },
+      {
+        src: "/images/bandeau1.jpeg",
+        alt: "Bandeau mini dress in black.",
       },
     ],
     colors: [
@@ -214,6 +237,10 @@ const products = [
     images: [
       {
         src: "/images/denim2.jpeg",
+        alt: "Blue denim dress with pockets.",
+      },
+      {
+        src: "/images/denim1.jpeg",
         alt: "Blue denim dress with pockets.",
       },
     ],
@@ -250,6 +277,10 @@ const products = [
         src: "/images/bodycon2.jpeg",
         alt: "Black bodycon dress on mannequin.",
       },
+      {
+        src: "/images/bodycon1.jpeg",
+        alt: "Black bodycon dress on mannequin.",
+      },
     ],
     colors: [
       { id: "black", name: "Black", classes: "bg-gray-900 checked:outline-gray-900" },
@@ -284,6 +315,10 @@ const products = [
         src: "/images/blazer2.jpeg",
         alt: "White blazer dress with gold buttons.",
       },
+      {
+        src: "/images/blazer1.jpeg",
+        alt: "Dark-blue blazer dress with blue buttons.",
+      },
     ],
     colors: [
       { id: "white", name: "White", classes: "bg-white checked:outline-gray-400" },
@@ -316,6 +351,10 @@ const products = [
     images: [
       {
         src: "/images/maxi2.jpeg",
+        alt: "Floral printed maxi dress.",
+      },
+      {
+        src: "/images/maxi1.jpeg",
         alt: "Floral printed maxi dress.",
       },
     ],
@@ -352,6 +391,10 @@ const products = [
         src: "/images/mini2.jpeg",
         alt: "Mini dress in soft lavender.",
       },
+      {
+        src: "/images/mini1.jpeg",
+        alt: "Mini dress in soft lavender.",
+      },
     ],
     colors: [
       { id: "lavender", name: "Lavender", classes: "bg-purple-200 checked:outline-purple-400" },
@@ -384,6 +427,10 @@ const products = [
     images: [
       {
         src: "/images/shirt2.jpeg",
+        alt: "Striped shirt dress in blue.",
+      },
+      {
+        src: "/images/shirt1.jpeg",
         alt: "Striped shirt dress in blue.",
       },
     ],
@@ -420,6 +467,10 @@ const products = [
         src: "/images/flow2.jpeg",
         alt: "Flowy chiffon dress in pastel tones.",
       },
+      {
+        src: "/images/flow1.jpeg",
+        alt: "Flowy chiffon dress in pastel tones.",
+      },
     ],
     colors: [
       { id: "pastelpink", name: "Pastel Pink", classes: "bg-pink-100 checked:outline-pink-400" },
@@ -451,6 +502,10 @@ const products = [
     images: [
       {
         src: "/images/tshirt2.jpeg",
+        alt: "Gray oversized T-shirt dress.",
+      },
+      {
+        src: "/images/tshirt1.jpeg",
         alt: "Gray oversized T-shirt dress.",
       },
     ],
@@ -487,6 +542,10 @@ const products = [
         src: "/images/wrap2.jpeg",
         alt: "Floral wrap dress in red.",
       },
+      {
+        src: "/images/wrap4.jpeg",
+        alt: "Floral wrap dress in red.",
+      },
     ],
     colors: [
       { id: "redfloral", name: "Red Floral", classes: "bg-red-100 checked:outline-red-400" },
@@ -519,6 +578,10 @@ const products = [
     images: [
       {
         src: "/images/strapless2.jpeg",
+        alt: "Black strapless midi dress.",
+      },
+      {
+        src: "/images/strapless1.jpeg",
         alt: "Black strapless midi dress.",
       },
     ],
@@ -555,6 +618,10 @@ const products = [
         src: "/images/custom2.jpeg",
         alt: "Tailored custom dress sketch.",
       },
+      {
+        src: "/images/custom1.jpeg",
+        alt: "Tailored custom dress sketch.",
+      },
     ],
     colors: [
       { id: "custom", name: "Custom", classes: "bg-white checked:outline-gray-400" },
@@ -582,6 +649,10 @@ const products = [
     images: [
       {
         src: "/images/native4.jpeg",
+        alt: "Ankara-inspired native dress.",
+      },
+      {
+        src: "/images/native3.jpeg",
         alt: "Ankara-inspired native dress.",
       },
     ],
@@ -618,11 +689,16 @@ const products = [
         src: "/images/off1.jpeg",
         alt: "Pink off-shoulder mini dress.",
       },
+      {
+        src: "/images/off2.jpeg",
+        alt: "Teal off-shoulder mini dress.",
+      },
     ],
     colors: [
       { id: "pink", name: "Pink", classes: "bg-pink-200 checked:outline-pink-400" },
       { id: "black", name: "Black", classes: "bg-gray-900 checked:outline-gray-900" },
       { id: "white", name: "White", classes: "bg-white checked:outline-gray-400" },
+      { id: "green", name: "Green", classes: "bg-teal-600 checked:outline-green-500" },
     ],
     sizes: [
       { name: "S", inStock: true },
@@ -649,6 +725,10 @@ const products = [
     images: [
       {
         src: "/images/pinafore2.jpeg",
+        alt: "Blue denim pinafore dress.",
+      },
+      {
+        src: "/images/pinafore1.jpeg",
         alt: "Blue denim pinafore dress.",
       },
     ],
@@ -685,6 +765,10 @@ const products = [
         src: "/images/knitted1.jpeg",
         alt: "Beige knitted sweater dress.",
       },
+      {
+        src: "/images/knitted.jpeg",
+        alt: "Brown knitted sweater dress.",
+      },
     ],
     colors: [
       { id: "beige", name: "Beige", classes: "bg-amber-100 checked:outline-amber-400" },
@@ -717,13 +801,18 @@ const products = [
     images: [
       {
         src: "/images/polo2.jpeg",
-        alt: "Navy blue polo dress.",
+        alt: "White blue polo dress.",
+      },
+      {
+        src: "/images/polo2.jpeg",
+        alt: "Teal blue polo dress.",
       },
     ],
     colors: [
       { id: "navy", name: "Navy", classes: "bg-blue-800 checked:outline-blue-800" },
       { id: "white", name: "White", classes: "bg-white checked:outline-gray-400" },
       { id: "black", name: "Black", classes: "bg-gray-900 checked:outline-gray-900" },
+      { id: "teal", name: "Teal", classes: "bg-teal-400 checked:outline-teal-500" },
     ],
     sizes: [
       { name: "S", inStock: true },
@@ -741,34 +830,35 @@ const products = [
   },
 
   {
-  name: "Swing Dress",
-  price: "$45",
-  href: "#",
-  breadcrumbs: [
-    { id: 1, name: "Women", href: "#" },
-    { id: 2, name: "Dresses", href: "#" },
-  ],
-  images: [
-    { src: "/images/swing2.jpeg", alt: "Flowy floral swing dress." },
-  ],
-  colors: [
-    { id: "red", name: "Red", classes: "bg-red-600 checked:outline-red-600" },
-    { id: "green", name: "Green", classes: "bg-green-600 checked:outline-green-600" },
-    { id: "yellow", name: "Yellow", classes: "bg-yellow-400 checked:outline-yellow-400" },
-  ],
-  sizes: [
-    { name: "S", inStock: true },
-    { name: "M", inStock: true },
-    { name: "L", inStock: true },
-    { name: "XL", inStock: true },
-  ],
-  description: "A breezy swing dress with a relaxed fit and playful movement.",
-  highlights: [
-    "Relaxed A-line silhouette",
-    "Above-knee length",
-    "Lightweight fabric for easy flow",
-  ],
-  details: "Perfect for casual outings—pairs well with sandals or flats.",
+    name: "Swing Dress",
+    price: "$45",
+    href: "#",
+    breadcrumbs: [
+      { id: 1, name: "Women", href: "#" },
+      { id: 2, name: "Dresses", href: "#" },
+    ],
+    images: [
+      { src: "/images/swing2.jpeg", alt: "Model in green floral swing dress." },
+      { src: "/images/swing1.jpeg", alt: "Model in red swing dress." },
+    ],
+    colors: [
+      { id: "red", name: "Red", classes: "bg-red-600 checked:outline-red-600" },
+      { id: "green", name: "Green", classes: "bg-green-600 checked:outline-green-600" },
+      { id: "yellow", name: "Yellow", classes: "bg-yellow-400 checked:outline-yellow-400" },
+    ],
+    sizes: [
+      { name: "S", inStock: true },
+      { name: "M", inStock: true },
+      { name: "L", inStock: true },
+      { name: "XL", inStock: true },
+    ],
+    description: "A breezy swing dress with a relaxed fit and playful movement.",
+    highlights: [
+      "Relaxed A-line silhouette",
+      "Above-knee length",
+      "Lightweight fabric for easy flow",
+    ],
+    details: "Perfect for casual outings—pairs well with sandals or flats.",
   },
 
   {
@@ -780,6 +870,7 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
+      { src: "/images/milkmaid.jpeg", alt: "White milkmaid dress with puff sleeves." },
       { src: "/images/milkmaid.jpeg", alt: "White milkmaid dress with puff sleeves." },
     ],
     colors: [
@@ -811,7 +902,8 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
-      { src: "/images/ball2.jpeg", alt: "Elegant ball gown with full skirt." },
+      { src: "/images/ball2.jpeg", alt: "Model in elegant ball gown with full skirt." },
+      { src: "/images/ball1.jpeg", alt: "Model in elegant ball gown with full skirt." },
     ],
     colors: [
       { id: "black", name: "Black", classes: "bg-black checked:outline-black" },
@@ -842,7 +934,8 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
-      { src: "/images/halter-neck.jpeg", alt: "Red halter neck dress." },
+      { src: "/images/halter-neck.jpeg", alt: "Model in red halter neck dress." },
+      { src: "/images/halter-neck2.jpeg", alt: "Model in red halter neck dress." },
     ],
     colors: [
       { id: "black", name: "Black", classes: "bg-gray-900 checked:outline-gray-900" },
@@ -873,7 +966,8 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
-      { src: "/images/jumper1.jpeg", alt: "Denim jumper dress with pockets." },
+      { src: "/images/jumper1.jpeg", alt: "Model in denim jumper dress with pockets." },
+      { src: "/images/jumper4.jpeg", alt: "Model in beige jumper dress with pockets." },
     ],
     colors: [
       { id: "denim", name: "Denim", classes: "bg-blue-500 checked:outline-blue-500" },
@@ -904,7 +998,8 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
-      { src: "/images/jersey1.jpeg", alt: "Comfortable jersey dress." },
+      { src: "/images/jersey1.jpeg", alt: "Model in comfortable jersey dress." },
+      { src: "/images/jersey2.jpeg", alt: "Model in comfortable jersey dress." },
     ],
     colors: [
       { id: "gray", name: "Gray", classes: "bg-gray-400 checked:outline-gray-400" },
@@ -935,7 +1030,8 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
-      { src: "/images/hoodie2.jpeg", alt: "Gray hoodie dress." },
+      { src: "/images/hoodie2.jpeg", alt: "Model in hoodie dress." },
+      { src: "/images/hoodie1.jpeg", alt: "Model in a hoodie dress." },
     ],
     colors: [
       { id: "gray", name: "Gray", classes: "bg-gray-400 checked:outline-gray-400" },
@@ -966,7 +1062,8 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
-      { src: "/images/shift2.jpeg", alt: "Classic shift dress." },
+      { src: "/images/shift2.jpeg", alt: "Model in a classic shift dress." },
+      { src: "/images/shift1.jpeg", alt: "Model in a classic shift dress." },
     ],
     colors: [
       { id: "blue", name: "Blue", classes: "bg-blue-500 checked:outline-blue-500" },
@@ -997,7 +1094,8 @@ const products = [
       { id: 2, name: "Dresses", href: "#" },
     ],
     images: [
-      { src: "/images/smock1.jpeg", alt: "Loose smock dress." },
+      { src: "/images/smock1.jpeg", alt: "Model in a loose smock dress." },
+      { src: "/images/smock2.jpeg", alt: "Model in a loose smock dress." },
     ],
     colors: [
       { id: "mint", name: "Mint", classes: "bg-green-300 checked:outline-green-300" },
@@ -1029,6 +1127,7 @@ const products = [
     ],
     images: [
       { src: "/images/wed2.jpeg", alt: "Elegant bridal wedding dress." },
+      { src: "/images/wed1.jpeg", alt: "Elegant bridal wedding dress." },
     ],
     colors: [
       { id: "ivory", name: "Ivory", classes: "bg-yellow-50 checked:outline-yellow-50" },
@@ -1060,6 +1159,7 @@ const products = [
     ],
     images: [
       { src: "/images/long2.jpeg", alt: "Longsleeved midi dress." },
+      { src: "/images/long1.jpeg", alt: "Model in a longsleeved midi dress." },
     ],
     colors: [
       { id: "black", name: "Black", classes: "bg-gray-900 checked:outline-gray-900" },

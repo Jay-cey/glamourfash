@@ -2,6 +2,7 @@ import Image from "next/image";
 import hero from "../../public/images/fash.png"
 import CarouselDem from "../../components/carousel";
 import Productsroll from "../../components/productsroll";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,17 +10,18 @@ export default function Home() {
 
       <main className="">
         
-        <section className="grid grid-flow-row md:grid-cols-5 gap-8 items-center justify-center w-full mx-auto max-md:space-y-8">
+        <section className="grid grid-flow-row md:grid-cols-5 gap-8 items-center justify-center w-full mx-auto max-md:space-y-8 lg:min-h-[70vh]">
             <div className="text-center md:col-span-2 md:space-y-4 md:text-center">
               <h2 className="text-lg opacity-75 md:hidden">Welcome to</h2>
               <div>
-                {/* <h1 className="text-6xl font-bold text-char">GlamourFash</h1> */}
                 <Image src={hero} alt="GlamourFash" className="w-3/4 md:w-full h-auto mx-auto md:mx-0"/>
                 <p className=" text-lg mb-2 opacity-75">Your one-stop shop for the latest fashion trends.</p>
               </div>
-              <button className="bg-char text-white px-6 py-3 rounded-md hover:bg-primary-700 transition ">
-                Shop Now
-              </button>
+              <Link href={"/shop/product"}>
+                <button className="bg-char text-white px-6 py-3 rounded-md hover:bg-primary-700 transition ">
+                   Shop Now
+                </button>
+              </Link>
 
             </div>
 

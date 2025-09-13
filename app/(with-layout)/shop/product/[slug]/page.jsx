@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 export default async function ProductPage({ params }) {
-    const { slug } = params;
+    const { slug } = await params;
     const product = products.find((p) => p.name.toLowerCase().replace(/\s+/g, '-') === slug);
     const review = reviews[products.indexOf(product)];
 
@@ -14,7 +14,6 @@ export default async function ProductPage({ params }) {
     if (!product) {
         return <div className="p-10 text-red-500">Product not found.</div>
     }
-    // if (!productReview) return null
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -54,28 +53,28 @@ export default async function ProductPage({ params }) {
             src={product.images[0].src}
             width={500}
             height={500}
-            className="row-span-2 aspect-3/4 size-full rounded-lg object-cover max-lg:hidden"
+            className="row-span-2 aspect-3/4 size-full rounded-lg object-cover"
           />
           <img
             alt={product.images[0].alt}
             src={product.images[0].src}
             width={500}
             height={500}
-            className="col-start-2 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
+            className="col-start-2 aspect-3/2 size-full rounded-lg object-cover object-top max-lg:hidden"
           />
           <img
-            alt={product.images[0].alt}
-            src={product.images[0].src}
+            alt={product.images[1].alt}
+            src={product.images[1].src}
             width={500}
             height={500}
-            className="col-start-2 row-start-2 aspect-3/2 size-full rounded-lg object-cover max-lg:hidden"
+            className="col-start-2 row-start-2 aspect-3/2 size-full rounded-lg object-cover object-top max-lg:hidden"
           />
           <img
-            alt={product.images[0].alt}
-            src={product.images[0].src}
+            alt={product.images[1].alt}
+            src={product.images[1].src}
             width={500}
             height={500}
-            className="row-span-2 aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-3/4"
+            className="row-span-2 aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-3/4 max-lg:hidden"
           />
         </div>
 

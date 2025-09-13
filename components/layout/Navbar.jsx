@@ -13,10 +13,10 @@ export default function Navbar() {
 
         <div className="max-md:hidden font-sans text-black">
             <ul className="flex space-x-6 text-lg font-medium max-md:space-x-3 text-white">
-                <Link href={""} className="">Home</Link>
-                <Link href={""} className="">Shop</Link>
-                <Link href={""} className="">About</Link>
-                <Link href={""} className="">Contact</Link>
+                <Link href={"/"} className="">Home</Link>
+                <Link href={"/shop/product"} className="">Shop</Link>
+                <Link href={"#"} className="">About</Link>
+                <Link href={"#"} className="">Contact</Link>
             </ul>
         </div>
 
