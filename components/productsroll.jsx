@@ -18,7 +18,7 @@ import img9 from "../public/images/blazer1.jpeg"
 import img10 from "../public/images/maxi1.jpeg"
 import img11 from "../public/images/mini1.jpeg"
 import img12 from "../public/images/shirt1.jpeg"
-import img13 from "../public/images/dress1.jpeg"
+import img13 from "../public/images/flow1.jpeg"
 import img14 from "../public/images/tshirt1.jpeg"
 import img15 from "../public/images/wrap1.jpeg"
 import img16 from "../public/images/strapless1.jpeg"
@@ -31,12 +31,12 @@ import img22 from "../public/images/polo1.jpeg"
 import Image from "next/image"
 import dresses from "../app/dresses"
 
+let imageList = [
+  img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
+  img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
+  img21, img22
+]
 export default function Productsroll() {
-    let imageList = [
-      img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
-      img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
-      img21, img22
-    ]
     return (
     <Carousel
       opts={{
@@ -59,3 +59,5 @@ export default function Productsroll() {
     </Carousel>
   )
 }
+
+export {imageList}

@@ -29,7 +29,7 @@ export default function Home() {
         
         <section className="w-full">
           <div className="mt-22 max-md:text-center">
-            <h2 className="text-3xl md:text-5xl font-semibold text-teal-900">Discover Our Collections</h2>
+            <h2 className="text-3xl md:text-5xl font-semibold text-primary-900">Discover Our Collections</h2>
             <p className="mb-6">Explore our wide range of clothing, accessories, and more.</p>
           </div>
 

@@ -32,7 +32,7 @@ export default function CardDemo() {
           </CardDescription>
           <CardAction>
             <Link href={"/auth/register"}>
-              <Button variant="outline" className="text-[#e1c1b6]">Sign Up</Button>
+              <Button variant="outline" className="text-rosegold">Sign Up</Button>
             </Link>
           </CardAction>
         </CardHeader>

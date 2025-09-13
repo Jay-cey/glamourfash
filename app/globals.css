@@ -47,11 +47,12 @@
 
 @theme{
   --color-primary-50: #D2E8B4; /* Light mint green */
-  --color-primary-500: #B4E8E4; /* Soft aqua */
+  --color-primary-500: #3e594f; /* Soft aqua */
   --color-primary-600: #e8b4b8;  /* Rose gold */
-  --color-primary-900: #CAB4E8; /* Lavender purple */
+  --color-primary-900: #505a73; /* Lavender purple */
   --color-char: #171717; /* Dark charcoal */
   --color-cream: #fdf6e3;
+  --color-rosegold: #DEA193; /* Rose gold */
   --font-serif: 'Playfair Display', serif;
   --font-sans: 'Inter', sans-serif;
 }

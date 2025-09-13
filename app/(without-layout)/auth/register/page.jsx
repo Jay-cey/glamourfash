@@ -32,7 +32,7 @@ function page() {
                     </CardDescription>
                     <CardAction>
                         <Link href={"/auth/login"}>
-                            <Button variant="outline" className="hover:bg-char text-yellow-700">Login</Button>
+                            <Button variant="outline" className="hover:bg-char text-rosegold cursor-pointer">Login</Button>
                         </Link>
                     </CardAction>
                 </CardHeader>
