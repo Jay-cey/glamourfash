@@ -1,11 +1,12 @@
 const products = [
+  // Dresses
   {
     name: "Suit Dress",
+    category: "dress",
     price: "$50",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -39,11 +40,11 @@ const products = [
 
   {
     name: "Corset Dress",
+    category: "dress",
     price: "$40",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -77,11 +78,11 @@ const products = [
 
   {
     name: "Casual Dress",
+    category: "dress",
     price: "$30",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -115,11 +116,11 @@ const products = [
 
   {
     name: "Cocktail Dress",
+    category: "dress",
     price: "$60",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -152,11 +153,11 @@ const products = [
 
   {
     name: "Backless Dress",
+    category: "dress",
     price: "$70",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -190,11 +191,11 @@ const products = [
 
   {
     name: "Bandeau Dress",
+    category: "dress",
     price: "$35",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -228,11 +229,11 @@ const products = [
 
   {
     name: "Denim Dress",
+    category: "dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -266,11 +267,11 @@ const products = [
 
   {
     name: "Bodycon Dress",
+    category: "dress",
     price: "$55",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -304,11 +305,11 @@ const products = [
 
   {
     name: "Blazer Dress",
+    category: "dress",
     price: "$65",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -342,11 +343,11 @@ const products = [
 
   {
     name: "Maxi Dress",
+    category: "dress",
     price: "$75",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -380,11 +381,11 @@ const products = [
 
   {
     name: "Mini Dress",
+    category: "dress",
     price: "$25",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -418,11 +419,11 @@ const products = [
 
   {
     name: "Shirt Dress",
+    category: "dress",
     price: "$20",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -456,11 +457,11 @@ const products = [
 
   {
     name: "Flow Dress",
+    category: "dress",
     price: "$80",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -493,11 +494,11 @@ const products = [
 
   {
     name: "T-Shirt Dress",
+    category: "dress",
     price: "$15",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -531,11 +532,11 @@ const products = [
 
   {
     name: "Wrap Dress",
+    category: "dress",
     price: "$50",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -569,11 +570,11 @@ const products = [
 
   {
     name: "Strapless Dress",
+    category: "dress",
     price: "$60",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -607,11 +608,11 @@ const products = [
 
   {
     name: "Custom Dress",
+    category: "dress",
     price: "$100",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -640,11 +641,11 @@ const products = [
 
   {
     name: "Native Dress",
+    category: "dress",
     price: "$90",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -678,11 +679,11 @@ const products = [
 
   {
     name: "Off-Shoulder Dress",
+    category: "dress",
     price: "$55",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -716,11 +717,11 @@ const products = [
 
   {
     name: "Pinafore Dress",
+    category: "dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -754,11 +755,11 @@ const products = [
 
   {
     name: "Knitted Dress",
+    category: "dress",
     price: "$70",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -792,11 +793,11 @@ const products = [
 
   {
     name: "Polo Dress",
+    category: "dress",
     price: "$30",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       {
@@ -831,11 +832,11 @@ const products = [
 
   {
     name: "Swing Dress",
+    category: "dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/swing2.jpeg", alt: "Model in green floral swing dress." },
@@ -863,11 +864,11 @@ const products = [
 
   {
     name: "Milkmaid Dress",
+    category: "dress",
     price: "$50",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/milkmaid.jpeg", alt: "White milkmaid dress with puff sleeves." },
@@ -895,11 +896,11 @@ const products = [
 
   {
     name: "Ball Dress",
+    category: "dress",
     price: "$120",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/ball2.jpeg", alt: "Model in elegant ball gown with full skirt." },
@@ -927,11 +928,11 @@ const products = [
 
   {
     name: "Halter Neck Dress",
+    category: "dress",
     price: "$55",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/halter-neck.jpeg", alt: "Model in red halter neck dress." },
@@ -959,11 +960,11 @@ const products = [
 
   {
     name: "Jumper Dress",
+    category: "dress",
     price: "$40",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/jumper1.jpeg", alt: "Model in denim jumper dress with pockets." },
@@ -991,11 +992,11 @@ const products = [
 
   {
     name: "Jersey Dress",
+    category: "dress",
     price: "$35",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/jersey1.jpeg", alt: "Model in comfortable jersey dress." },
@@ -1023,11 +1024,11 @@ const products = [
 
   {
     name: "Hoodie Dress",
+    category: "dress",
     price: "$60",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/hoodie2.jpeg", alt: "Model in hoodie dress." },
@@ -1055,11 +1056,11 @@ const products = [
 
   {
     name: "Shift Dress",
+    category: "dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/shift2.jpeg", alt: "Model in a classic shift dress." },
@@ -1087,11 +1088,11 @@ const products = [
 
   {
     name: "Smock Dress",
+    category: "dress",
     price: "$38",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/smock1.jpeg", alt: "Model in a loose smock dress." },
@@ -1119,11 +1120,11 @@ const products = [
 
   {
     name: "Wedding Dress",
+    category: "dress",
     price: "$250",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/wed2.jpeg", alt: "Elegant bridal wedding dress." },
@@ -1151,11 +1152,11 @@ const products = [
 
   {
     name: "Longsleeved Dress",
+    category: "dress",
     price: "$48",
     href: "#",
     breadcrumbs: [
-      { id: 1, name: "Women", href: "#" },
-      { id: 2, name: "Dresses", href: "#" },
+      { id: 1, name: "Home", href: "/" },
     ],
     images: [
       { src: "/images/long2.jpeg", alt: "Longsleeved midi dress." },
@@ -1180,6 +1181,10 @@ const products = [
     ],
     details: "Great for cooler weather or modest fashion looks.",
   }
+
+  // Footwear
+
+  // Accessory
 ];
 
 const reviews = [
