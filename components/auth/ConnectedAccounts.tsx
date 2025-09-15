@@ -24,7 +24,7 @@ export function ConnectedAccounts({
     try {
       await unlinkAccount(userId, provider)
       setProviders((prev) => prev.filter((p) => p !== provider))
-    } catch (err) {
+    } catch {
       setError("Failed to unlink account. Please try again.")
     }
   }
