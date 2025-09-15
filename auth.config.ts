@@ -29,6 +29,13 @@ export const authConfig = {
   session: { strategy: "jwt" },
   pages: {
     signIn: "/auth/login",
+    error: "/auth/error"
   },
   secret: process.env.AUTH_SECRET,
+  callbacks: {
+    async signIn() {
+      return true // always allow sign-in attempts
+    },
+  },
+
 } satisfies Parameters<typeof NextAuth>[0]
