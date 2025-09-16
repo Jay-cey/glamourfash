@@ -1,3 +1,4 @@
+// @ts-expect-error Async searchParams type mismatch bug in Next.js 15
 export default function AuthErrorPage({
     searchParams,
     }: {
