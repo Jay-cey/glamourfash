@@ -1,9 +1,10 @@
-"use client"
-import { useSearchParams } from "next/navigation"
 
-export default function AuthErrorPage() {
-  const searchParams = useSearchParams()
-  const error = searchParams.get("error")
+export default function AuthErrorPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const error = searchParams.error
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
@@ -11,7 +12,8 @@ export default function AuthErrorPage() {
       {error === "OAuthAccountNotLinked" ? (
         <p>
           An account with this email already exists. <br />
-          Please log in with your email & password, then link your GitHub/Google account in settings.
+          Please log in with your email & password, then link your GitHub/Google account in
+          settings.
         </p>
       ) : (
         <p>Something went wrong. Please try again.</p>
