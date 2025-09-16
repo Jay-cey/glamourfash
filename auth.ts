@@ -1,4 +1,3 @@
-// auth.ts
 import NextAuth from "next-auth"
 import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
@@ -26,7 +25,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Missing email or password")
         }
