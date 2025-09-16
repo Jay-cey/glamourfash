@@ -1,8 +1,17 @@
-import type { PageProps } from 'next';
+// app/auth-error/page.tsx
 
-export default async function AuthErrorPage({ searchParams }: PageProps) {
-  const resolvedSearchParams = searchParams ? await searchParams : {};
-  const error = resolvedSearchParams.error;
+// Define a type for the component's props to clearly specify the searchParams structure.
+// This is an internal type and does not need to be imported from 'next'.
+type Props = {
+  searchParams?: {
+    [key: string]: string | string[] | undefined;
+  };
+};
+
+export default async function AuthErrorPage({ searchParams }: Props) {
+  // Wait for the searchParams promise to resolve, which is required in Next.js 15+.
+  const resolvedSearchParams = await searchParams;
+  const error = resolvedSearchParams?.error;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
