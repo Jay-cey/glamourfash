@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { signIn } from "@/auth";
+import { signIn } from "next-auth/react";
 import SignInButton from "@/components/signinbutton";
 
 export default function RegisterPage() {

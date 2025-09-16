@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       data: {
         name: `${fname} ${lname}`,
         email,
-        hashedPassword, // <- you need this in your schema
+        hashedPassword,
       },
     });
 
@@ -41,4 +41,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }
-// export const runtime = "edge"; // Ensure the route runs on the edge runtime

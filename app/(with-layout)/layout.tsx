@@ -14,10 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="min-h-screen flex flex-col justify-between">
       <Navbar/>
       {children}
       <Footer/>
-    </>
+    </div>
   );
 }
