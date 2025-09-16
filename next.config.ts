@@ -1,7 +1,28 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config : any, { isServer }:{ isServer: boolean}) => {
+    if (isServer) {
+      config.externals.push({
+        '@prisma/client': 'commonjs @prisma/client',
+      });
+    }
+    
+    // Handle WASM files
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true,
+    };
 
-const nextConfig: NextConfig = {
-  /* config options here */
+    config.module.rules.push({
+      test: /\.wasm$/,
+      type: 'asset/resource',
+    });
+
+    return config;
+  },
+  experimental: {
+    serverComponentsExternalPackages: ['@prisma/client'],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
