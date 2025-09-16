@@ -1,6 +1,8 @@
-// @ts-expect-error Async searchParams type mismatch bug in Next.js 15
-export default function AuthErrorPage({ searchParams }: { searchParams?: Record<string, string | string[]> }) {
-  const error = searchParams?.error;
+import type { PageProps } from 'next';
+
+export default async function AuthErrorPage({ searchParams }: PageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const error = resolvedSearchParams.error;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
