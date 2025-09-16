@@ -1,19 +1,15 @@
 // @ts-expect-error Async searchParams type mismatch bug in Next.js 15
-export default function AuthErrorPage({
-    searchParams,
-    }: {
-      searchParams?: { [key: string]: string | string[] | undefined }
-      }) {
-        const error = searchParams?.error
+export default function AuthErrorPage({ searchParams }: { searchParams?: Record<string, string | string[]> }) {
+  const error = searchParams?.error;
 
-          return (
-              <div className="flex flex-col items-center justify-center min-h-screen">
-                    <h1 className="text-2xl font-bold mb-4">Authentication Error</h1>
-                          {error === "OAuthAccountNotLinked" ? (
-                                  <p>Please log in with the same provider you used originally.</p>
-                                        ) : (
-                                                <p>Something went wrong. Please try again.</p>
-                                                      )}
-                                                          </div>
-                                                            )
-                                                            }
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Authentication Error</h1>
+      {error === "OAuthAccountNotLinked" ? (
+        <p>Please log in with the same provider you used originally.</p>
+      ) : (
+        <p>Something went wrong. Please try again.</p>
+      )}
+    </div>
+  );
+}
