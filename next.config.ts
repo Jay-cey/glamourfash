@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: { serverComponentsExternalPackages: ['@prisma/client', 'prisma'] }
+  serverExternalPackages: ['@prisma/client', 'prisma'],
+  webpack: (config) => {
+    config.experiments = { ...config.experiments, asyncWebAssembly: true, layers: true };
+    return config;
+  },
 }
 
 module.exports = nextConfig
