@@ -13,15 +13,22 @@ interface CustomNextConfig extends NextConfig {
 
 const nextConfig: CustomNextConfig = {
   serverExternalPackages: ['@prisma/client', 'prisma'],
-  webpack: (config: Configuration) => {
+  webpack: (config: Configuration, { isServer, nextRuntime }) => {
     config.experiments = { ...config.experiments, asyncWebAssembly: true, layers: true };
 
     config.module = config.module || {};
     config.module.rules = config.module.rules || [];
     config.module.rules.push({
       test: /\.wasm$/,
-      type: "asset/resource",
+      type: "asset/source",
     });
+
+    // This is required to make Prisma work in edge functions
+    if (isServer && nextRuntime === "edge") {
+      config.resolve = config.resolve || {};
+      config.resolve.alias = { ...config.resolve.alias, "./query_engine_bg.js": "./query_engine_bg.wasm?module" };
+    }
+
     return config;
   },
 }
