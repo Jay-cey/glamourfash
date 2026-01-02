@@ -27,33 +27,36 @@ export default function Navbar() {
     }
   }, [pathname]);
   return (
-    <nav className={`top-0 h-20 flex items-center pt-2 max-md:px-3 mx-auto justify-between md:px-18 z-50 w-full 
-      ${pathname === "/"
-        ? `transition-all duration-50 ${
-          scrolled
-            ? "bg-[#505a73] shadow-lg py-2 sticky":"bg-transparent py-4 mt-3 fixed"
-        }` : `bg-[#505a73] sticky py-2`
-      }    
-    `}>
-        <div className="">
-            <Image src={fash} alt="GlamourFash Logo" width={128} height={128} className="object-cover"/>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${
+      scrolled || pathname !== "/" 
+        ? "bg-white/95 backdrop-blur-sm py-3 text-stone-900 shadow-sm" 
+        : "bg-transparent py-6 text-white"
+    }`}>
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        <div className="flex-shrink-0">
+            <Image src={fash} alt="GlamourFash Logo" width={140} height={40} className="object-contain w-32 md:w-40"/>
         </div>
 
-        <div className="max-md:hidden font-sans text-black">
-            <ul className="flex space-x-6 text-lg font-medium max-md:space-x-3 text-white">
-                <Link href={"/"} className="">Home</Link>
-                <Link href={"/shop/product"} className="">Shop</Link>
-                <Link href={"#"} className="">About</Link>
-                <Link href={"#"} className="">Contact</Link>
+        <div className="hidden md:flex items-center gap-8">
+            <ul className="flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <Link href={"/"} className="hover:text-rosegold transition-colors">Home</Link>
+                <Link href={"/shop/product"} className="hover:text-rosegold transition-colors">Shop</Link>
+                <Link href={"/about"} className="hover:text-rosegold transition-colors">About</Link>
+                <Link href={"/contact"} className="hover:text-rosegold transition-colors">Contact</Link>
             </ul>
         </div>
 
+        <div className="flex items-center gap-4">
         {session?.user ? (
-        <div className="-mt-3 flex items-center gap-3">
-          <span className="text-white font-medium">{session.user?.name}</span>
+        <div className="flex items-center gap-4">
+          <Link href="/dashboard/account/settings" className="hidden md:block text-sm font-medium">{session.user?.name}</Link>
           <Button
             variant="outline"
-            className="hover:bg-char text-yellow-700"
+            className={`rounded-full px-6 text-xs uppercase tracking-widest transition-all ${
+              scrolled || pathname !== "/" 
+                ? "border-stone-200 hover:bg-stone-100 hover:text-stone-900" 
+                : "border-white/50 hover:bg-white text-stone-900 hover:text-rosegold"
+            }`}
             onClick={() => {
               signOut({redirectTo:"/"}) // call your custom signOut if needed
             }}
@@ -62,10 +65,21 @@ export default function Navbar() {
           </Button>
         </div>
       ) : (
-        <Link href={"/auth/login"} className="-mt-3">
-          <Button variant="outline" className="hover:bg-char text-yellow-700">Login</Button>
+        <Link href={"/auth/login"}>
+          <Button 
+            variant="outline" 
+            className={`rounded-full px-6 text-xs uppercase tracking-widest transition-all ${
+              scrolled || pathname !== "/" 
+                ? "border-stone-200 hover:bg-stone-100 hover:text-stone-900" 
+                : "border-white/50  hover:bg-white text-stone-900 hover:text-rosegold"
+            }`}
+          >
+            Login
+          </Button>
         </Link>
       )}
+        </div>
+      </div>
     </nav>
   )
 }

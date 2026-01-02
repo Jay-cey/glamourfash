@@ -35,6 +35,18 @@ let imageList = [
   img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
   img21, img22
 ]
+
+const products = imageList.map((image, index) => {
+  const dress = dresses[index]
+  const name = dress?.name || "Product"
+  return {
+    id: index,
+    image,
+    name,
+    displayName: name === "Suit" ? "Suit" : `${name} dress`
+  }
+})
+
 export default function Productsroll() {
     return (
     <Carousel
@@ -44,11 +56,11 @@ export default function Productsroll() {
       className="w-full max-w-sm md:max-w-3xl lg:max-w-6xl mx-auto"
     >
       <CarouselContent>
-        {imageList.map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
+        {products.map((product) => (
+          <CarouselItem key={product.id} className="md:basis-1/3 lg:basis-1/4">
             <div className="p-1 text-center text-char space-y-3">
-                <Image src={imageList[index]} alt={dresses[index].name} className="object-cover rounded-lg"/>
-                <span className="">{dresses[index].name != "Suit" ? dresses[index].name + " dress" : dresses[index].name}</span>
+                <Image src={product.image} alt={product.name} className="object-cover rounded-lg"/>
+                <span className="">{product.displayName}</span>
             </div>
           </CarouselItem>
         ))}

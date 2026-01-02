@@ -5,11 +5,13 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
-
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
-  providers: [
-    GitHubProvider({
+import { authConfig } from "./auth.config"
+ 
+ export const { handlers, signIn, signOut, auth } = NextAuth({
+  ...authConfig,
+   adapter: PrismaAdapter(prisma),
+   providers: [
+     GitHubProvider({
       clientId: process.env.AUTH_GITHUB_ID!,
       clientSecret: process.env.AUTH_GITHUB_SECRET!,
     }),
@@ -34,6 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })
 
         if (!user || !user.hashedPassword) {
+          console.log("User not found or no password set")
           return null
         }
 
@@ -43,6 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         )
 
         if (!isPasswordValid) {
+          console.log("Invalid password")
           return null
         }
 
@@ -54,28 +58,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  session: { strategy: "jwt" },
-  pages: {
-    signIn: "/auth/login",
-    error: "/auth/error",
-  },
-  secret: process.env.AUTH_SECRET,
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id
-        token.name = user.name
-        token.email = user.email
-      }
-      return token
-    },
-    async session({ session, token }) {
-      if (token?.id) {
-        session.user.id = token.id as string
-        session.user.name = token.name as string
-        session.user.email = token.email as string
-      }
-      return session
-    },
-  },
 })
