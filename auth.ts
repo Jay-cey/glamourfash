@@ -9,7 +9,7 @@ import { authConfig } from "./auth.config"
  
  export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
-   adapter: PrismaAdapter(prisma),
+   adapter: PrismaAdapter(prisma) as any,
    providers: [
      GitHubProvider({
       clientId: process.env.AUTH_GITHUB_ID!,
