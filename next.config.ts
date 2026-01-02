@@ -31,6 +31,7 @@ const nextConfig: CustomNextConfig = {
 
     return config;
   },
+  turbopack: {},
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
