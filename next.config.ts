@@ -3,7 +3,7 @@ import type { Configuration } from 'webpack';
 
 /** @type {import('next').NextConfig} */
 interface WebpackCustomizer {
-  (config: Configuration, ...args: unknown[]): Configuration | Promise<Configuration>;
+  (config: Configuration, context: any): Configuration | Promise<Configuration>;
 }
 
 interface CustomNextConfig extends NextConfig {
