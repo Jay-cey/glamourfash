@@ -69,7 +69,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Link href={"/shop/product"}>
+            <Link href={"/shop/products"}>
               <button className="bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-stone-200 transition-colors uppercase text-sm tracking-widest">
                   Shop Now
               </button>
