@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { FaSearch, FaSlidersH, FaTimes } from "react-icons/fa";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const SplitText = ({ children, delay = 0 }) => {
   return (
@@ -21,7 +22,8 @@ const SplitText = ({ children, delay = 0 }) => {
 };
 
 export default function ProductsView({ products }) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchParams = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [isFilterOpen, setIsFilterOpen] = useState(false); // Mobile filter toggle
   const containerRef = useRef(null);
@@ -29,6 +31,13 @@ export default function ProductsView({ products }) {
   
   // Extract unique categories
   const categories = ["All", ...new Set(products.map((p) => p.category))];
+
+  useEffect(() => {
+    const query = searchParams.get("search");
+    if (query !== null) {
+      setSearchQuery(query);
+    }
+  }, [searchParams]);
 
   // Filter logic
   const filteredProducts = products.filter((product) => {

@@ -81,3 +81,34 @@ model Authenticator {
  
   @@unique([userId, credentialID])
 }
+
+model Order {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  email      String
+  address    String
+  city       String
+  postalCode String
+  
+  items      OrderItem[]
+  
+  subtotal   Float
+  shipping   Float
+  total      Float
+  
+  status     String      @default("PENDING")
+  createdAt  DateTime    @default(now())
+}
+
+model OrderItem {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  orderId  String  @db.ObjectId
+  order    Order   @relation(fields: [orderId], references: [id])
+  
+  name     String
+  price    String
+  quantity Int
+  image    String
+  category String
+  size     String?
+  color    String?
+}
