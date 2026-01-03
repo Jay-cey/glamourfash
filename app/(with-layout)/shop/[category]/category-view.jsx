@@ -1,4 +1,4 @@
-add"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -33,52 +33,65 @@ export default function CategoryView({ products, category }) {
           </div>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
-        >
-          {products.map((product) => (
-            <motion.div key={product.name} variants={itemVariants} className="group relative">
-              <Link href={`/shop/${product.category.toLowerCase()}/${product.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                <div className="aspect-[3/4] w-full overflow-hidden rounded-xl bg-gray-100 relative">
-                  <motion.img
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-                    src={product.images[0].src}
-                    alt={product.images[0].alt}
-                    className="h-full w-full object-cover object-center"
-                  />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="bg-white/90 backdrop-blur-md text-black px-6 py-2 rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
-                      View Details
-                    </span>
-                  </div>
+        {products.length > 0 ? (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+          >
+            {products.map((product) => (
+              <motion.div key={product.name} variants={itemVariants} className="group relative">
+                <Link href={`/shop/${product.category.toLowerCase()}/${product.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <div className="aspect-[3/4] w-full overflow-hidden rounded-xl bg-gray-100 relative">
+                    <motion.img
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+                      src={product.images[0].src}
+                      alt={product.images[0].alt}
+                      className="h-full w-full object-cover object-center"
+                    />
+                    
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="bg-white/90 backdrop-blur-md text-black px-6 py-2 rounded-full text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+                        View Details
+                      </span>
+                    </div>
 
-                  {/* Category Tag */}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2 py-1 bg-white/80 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider rounded-sm text-gray-900">
-                      {product.category}
-                    </span>
+                    {/* Category Tag */}
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2 py-1 bg-white/80 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider rounded-sm text-gray-900">
+                        {product.category}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="mt-4 flex justify-between items-start">
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900 group-hover:text-gray-600 transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+                  
+                  <div className="mt-4 flex justify-between items-start">
+                    <div>
+                      <h3 className="text-sm font-medium text-gray-900 group-hover:text-gray-600 transition-colors">
+                        {product.name}
+                      </h3>
+                      <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-900">{product.price}</p>
                   </div>
-                  <p className="text-sm font-semibold text-gray-900">{product.price}</p>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            className="flex flex-col items-center justify-center py-20 text-center"
+          >
+            <p className="text-lg text-gray-500 mb-4">No products found in this category.</p>
+            <Link href="/shop/products" className="text-black underline underline-offset-4 hover:text-gray-600 transition-colors">
+              Browse all products
+            </Link>
+          </motion.div>
+        )}
       </div>
     </div>
   );
