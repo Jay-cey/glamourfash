@@ -113,7 +113,7 @@ export default function Navbar() {
         <div className="hidden md:block">
         {session?.user ? (
         <div className="flex items-center gap-4">
-          <Link href="/dashboard/account/settings" className="hidden md:block text-sm font-medium">{session.user?.name}</Link>
+          <Link href="/dashboard/account" className="hidden md:block text-sm font-medium">{session.user?.name}</Link>
           <Button
             variant="outline"
             className={`rounded-full px-6 text-xs uppercase tracking-widest transition-all ${
@@ -165,7 +165,7 @@ export default function Navbar() {
             
             {session?.user ? (
                 <>
-                    <Link href="/dashboard/account/settings" className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">
+                    <Link href="/dashboard/account" className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">
                         Account ({session.user.name})
                     </Link>
                     <button onClick={() => signOut({redirectTo:"/"})} className="text-left text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">
