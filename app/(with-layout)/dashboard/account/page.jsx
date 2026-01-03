@@ -1,8 +1,13 @@
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import AccountView from "./account-view";
 
-function page() {
-  return (
-    <div>page</div>
-  )
+export default async function AccountPage() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/api/auth/signin");
+  }
+
+  return <AccountView user={session.user} />;
 }
-
-export default page

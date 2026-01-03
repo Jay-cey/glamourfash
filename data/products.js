@@ -2,7 +2,7 @@ const products = [
   // Dresses
   {
     name: "Suit Dress",
-    category: "dress",
+    category: "Dress",
     price: "$50",
     href: "#",
     breadcrumbs: [
@@ -40,7 +40,7 @@ const products = [
 
   {
     name: "Corset Dress",
-    category: "dress",
+    category: "Dress",
     price: "$40",
     href: "#",
     breadcrumbs: [
@@ -78,7 +78,7 @@ const products = [
 
   {
     name: "Casual Dress",
-    category: "dress",
+    category: "Dress",
     price: "$30",
     href: "#",
     breadcrumbs: [
@@ -116,7 +116,7 @@ const products = [
 
   {
     name: "Cocktail Dress",
-    category: "dress",
+    category: "Dress",
     price: "$60",
     href: "#",
     breadcrumbs: [
@@ -153,7 +153,7 @@ const products = [
 
   {
     name: "Backless Dress",
-    category: "dress",
+    category: "Dress",
     price: "$70",
     href: "#",
     breadcrumbs: [
@@ -191,7 +191,7 @@ const products = [
 
   {
     name: "Bandeau Dress",
-    category: "dress",
+    category: "Dress",
     price: "$35",
     href: "#",
     breadcrumbs: [
@@ -229,7 +229,7 @@ const products = [
 
   {
     name: "Denim Dress",
-    category: "dress",
+    category: "Dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
@@ -267,7 +267,7 @@ const products = [
 
   {
     name: "Bodycon Dress",
-    category: "dress",
+    category: "Dress",
     price: "$55",
     href: "#",
     breadcrumbs: [
@@ -305,7 +305,7 @@ const products = [
 
   {
     name: "Blazer Dress",
-    category: "dress",
+    category: "Dress",
     price: "$65",
     href: "#",
     breadcrumbs: [
@@ -343,7 +343,7 @@ const products = [
 
   {
     name: "Maxi Dress",
-    category: "dress",
+    category: "Dress",
     price: "$75",
     href: "#",
     breadcrumbs: [
@@ -381,7 +381,7 @@ const products = [
 
   {
     name: "Mini Dress",
-    category: "dress",
+    category: "Dress",
     price: "$25",
     href: "#",
     breadcrumbs: [
@@ -419,7 +419,7 @@ const products = [
 
   {
     name: "Shirt Dress",
-    category: "dress",
+    category: "Dress",
     price: "$20",
     href: "#",
     breadcrumbs: [
@@ -457,7 +457,7 @@ const products = [
 
   {
     name: "Flow Dress",
-    category: "dress",
+    category: "Dress",
     price: "$80",
     href: "#",
     breadcrumbs: [
@@ -494,7 +494,7 @@ const products = [
 
   {
     name: "T-Shirt Dress",
-    category: "dress",
+    category: "Dress",
     price: "$15",
     href: "#",
     breadcrumbs: [
@@ -532,7 +532,7 @@ const products = [
 
   {
     name: "Wrap Dress",
-    category: "dress",
+    category: "Dress",
     price: "$50",
     href: "#",
     breadcrumbs: [
@@ -570,7 +570,7 @@ const products = [
 
   {
     name: "Strapless Dress",
-    category: "dress",
+    category: "Dress",
     price: "$60",
     href: "#",
     breadcrumbs: [
@@ -608,7 +608,7 @@ const products = [
 
   {
     name: "Custom Dress",
-    category: "dress",
+    category: "Dress",
     price: "$100",
     href: "#",
     breadcrumbs: [
@@ -641,7 +641,7 @@ const products = [
 
   {
     name: "Native Dress",
-    category: "dress",
+    category: "Dress",
     price: "$90",
     href: "#",
     breadcrumbs: [
@@ -679,7 +679,7 @@ const products = [
 
   {
     name: "Off-Shoulder Dress",
-    category: "dress",
+    category: "Dress",
     price: "$55",
     href: "#",
     breadcrumbs: [
@@ -717,7 +717,7 @@ const products = [
 
   {
     name: "Pinafore Dress",
-    category: "dress",
+    category: "Dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
@@ -755,7 +755,7 @@ const products = [
 
   {
     name: "Knitted Dress",
-    category: "dress",
+    category: "Dress",
     price: "$70",
     href: "#",
     breadcrumbs: [
@@ -793,7 +793,7 @@ const products = [
 
   {
     name: "Polo Dress",
-    category: "dress",
+    category: "Dress",
     price: "$30",
     href: "#",
     breadcrumbs: [
@@ -832,7 +832,7 @@ const products = [
 
   {
     name: "Swing Dress",
-    category: "dress",
+    category: "Dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
@@ -864,7 +864,7 @@ const products = [
 
   {
     name: "Milkmaid Dress",
-    category: "dress",
+    category: "Dress",
     price: "$50",
     href: "#",
     breadcrumbs: [
@@ -895,8 +895,8 @@ const products = [
   },
 
   {
-    name: "Ball Dress",
-    category: "dress",
+    name: "Ball Gown",
+    category: "Dress",
     price: "$120",
     href: "#",
     breadcrumbs: [
@@ -928,7 +928,7 @@ const products = [
 
   {
     name: "Halter Neck Dress",
-    category: "dress",
+    category: "Dress",
     price: "$55",
     href: "#",
     breadcrumbs: [
@@ -960,7 +960,7 @@ const products = [
 
   {
     name: "Jumper Dress",
-    category: "dress",
+    category: "Dress",
     price: "$40",
     href: "#",
     breadcrumbs: [
@@ -992,7 +992,7 @@ const products = [
 
   {
     name: "Jersey Dress",
-    category: "dress",
+    category: "Dress",
     price: "$35",
     href: "#",
     breadcrumbs: [
@@ -1024,7 +1024,7 @@ const products = [
 
   {
     name: "Hoodie Dress",
-    category: "dress",
+    category: "Dress",
     price: "$60",
     href: "#",
     breadcrumbs: [
@@ -1056,7 +1056,7 @@ const products = [
 
   {
     name: "Shift Dress",
-    category: "dress",
+    category: "Dress",
     price: "$45",
     href: "#",
     breadcrumbs: [
@@ -1088,7 +1088,7 @@ const products = [
 
   {
     name: "Smock Dress",
-    category: "dress",
+    category: "Dress",
     price: "$38",
     href: "#",
     breadcrumbs: [
@@ -1119,8 +1119,8 @@ const products = [
   },
 
   {
-    name: "Wedding Dress",
-    category: "dress",
+    name: "Wedding Gown",
+    category: "Dress",
     price: "$250",
     href: "#",
     breadcrumbs: [
@@ -1151,8 +1151,8 @@ const products = [
   },
 
   {
-    name: "Longsleeved Dress",
-    category: "dress",
+    name: "Long Sleeve Dress",
+    category: "Dress",
     price: "$48",
     href: "#",
     breadcrumbs: [
@@ -1224,4 +1224,3 @@ const reviews = [
 ]
 
 export { products, reviews }
-

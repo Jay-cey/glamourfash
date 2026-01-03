@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8">
             <ul className="flex space-x-8 text-sm font-medium uppercase tracking-widest">
                 <Link href={"/"} className="hover:text-rosegold transition-colors">Home</Link>
-                <Link href={"/shop/product"} className="hover:text-rosegold transition-colors">Shop</Link>
+                <Link href={"/shop/products"} className="hover:text-rosegold transition-colors">Shop</Link>
                 <Link href={"/about"} className="hover:text-rosegold transition-colors">About</Link>
                 <Link href={"/contact"} className="hover:text-rosegold transition-colors">Contact</Link>
             </ul>
