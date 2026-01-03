@@ -8,7 +8,7 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { useCart } from "@/app/context/cart-context";
-import { FaShoppingBag, FaSearch } from "react-icons/fa";
+import { FaShoppingBag, FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
 
 export default function Navbar() {
@@ -19,6 +19,7 @@ export default function Navbar() {
   const router = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -35,6 +36,10 @@ export default function Navbar() {
       setSearchQuery("");
     }
   };
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (pathname === "/") {
@@ -105,6 +110,7 @@ export default function Navbar() {
               </span>
             )}
           </button>
+        <div className="hidden md:block">
         {session?.user ? (
         <div className="flex items-center gap-4">
           <Link href="/dashboard/account/settings" className="hidden md:block text-sm font-medium">{session.user?.name}</Link>
@@ -137,6 +143,41 @@ export default function Navbar() {
         </Link>
       )}
         </div>
+
+        <button 
+          className="md:hidden p-2 hover:text-rosegold transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
+        </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`md:hidden bg-white text-stone-900 overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "max-h-[500px] shadow-lg border-t border-gray-100" : "max-h-0"}`}>
+         <div className="flex flex-col p-6 gap-6">
+            <Link href={"/"} className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">Home</Link>
+            <Link href={"/shop/products"} className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">Shop</Link>
+            <Link href={"/about"} className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">About</Link>
+            <Link href={"/contact"} className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">Contact</Link>
+            
+            <div className="h-px bg-gray-100" />
+            
+            {session?.user ? (
+                <>
+                    <Link href="/dashboard/account/settings" className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">
+                        Account ({session.user.name})
+                    </Link>
+                    <button onClick={() => signOut({redirectTo:"/"})} className="text-left text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">
+                        Logout
+                    </button>
+                </>
+            ) : (
+                <Link href={"/auth/login"} className="text-sm font-medium uppercase tracking-widest hover:text-rosegold transition-colors">
+                    Login
+                </Link>
+            )}
+         </div>
       </div>
     </nav>
   )
