@@ -1,15 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import { useCart } from "@/app/context/cart-context";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
 import { FaArrowLeft, FaLock } from "react-icons/fa";
 import { createOrder } from "@/app/actions/orders";
+import { z } from "zod";
+import { CartItem } from "@/app/types";
 
-export default function CheckoutForm({ user }) {
-  const { cart, clearCart } = useCart();
+const checkoutSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  address: z.string().min(1, "Address is required"),
+  city: z.string().min(1, "City is required"),
+  postalCode: z.string().min(1, "Postal code is required"),
+  cardNumber: z.string().min(1, "Card number is required"),
+  expiry: z.string().regex(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/, "Invalid expiry date (MM/YY)"),
+  cvc: z.string().min(3, "CVC is required"),
+});
+
+interface CheckoutFormProps {
+  user?: {
+    email?: string | null;
+    [key: string]: any;
+  } | null;
+}
+
+export default function CheckoutForm({ user }: CheckoutFormProps) {
+  const { cart, clearCart } = useCart() as { cart: CartItem[]; clearCart: () => void };
   const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -18,7 +37,7 @@ export default function CheckoutForm({ user }) {
     setMounted(true);
   }, []);
 
-  const subtotal = cart.reduce((total, item) => {
+  const subtotal = cart.reduce((total: number, item: CartItem) => {
     const price = parseFloat(item.price.replace(/[^0-9.]/g, ""));
     return total + price * item.quantity;
   }, 0);
@@ -26,10 +45,18 @@ export default function CheckoutForm({ user }) {
   const shipping = subtotal > 100 ? 0 : 15;
   const total = subtotal + shipping;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsProcessing(true);
     const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    const validation = checkoutSchema.safeParse(data);
+    if (!validation.success) {
+      toast.error(validation.error.issues[0].message);
+      setIsProcessing(false);
+      return;
+    }
     
     try {
       const result = await createOrder(formData, cart, { subtotal, shipping, total });
@@ -119,16 +146,16 @@ export default function CheckoutForm({ user }) {
                 <div className="grid grid-cols-1 gap-y-6">
                   <div>
                     <label htmlFor="card-number" className="block text-sm font-medium text-gray-700">Card number</label>
-                    <input type="text" id="card-number" placeholder="0000 0000 0000 0000" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm p-3 border" />
+                    <input type="text" id="card-number" name="cardNumber" placeholder="0000 0000 0000 0000" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm p-3 border" />
                   </div>
                   <div className="grid grid-cols-2 gap-x-4">
                     <div>
                       <label htmlFor="expiry" className="block text-sm font-medium text-gray-700">Expiry date (MM/YY)</label>
-                      <input type="text" id="expiry" placeholder="MM/YY" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm p-3 border" />
+                      <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm p-3 border" />
                     </div>
                     <div>
                       <label htmlFor="cvc" className="block text-sm font-medium text-gray-700">CVC</label>
-                      <input type="text" id="cvc" placeholder="123" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm p-3 border" />
+                      <input type="text" id="cvc" name="cvc" placeholder="123" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black sm:text-sm p-3 border" />
                     </div>
                   </div>
                 </div>
@@ -156,7 +183,7 @@ export default function CheckoutForm({ user }) {
               <h2 className="text-lg font-medium text-gray-900 mb-4">Order Summary</h2>
               <div className="flow-root">
                 <ul role="list" className="-my-4 divide-y divide-gray-200">
-                  {cart.map((item) => (
+                  {cart.map((item: CartItem) => (
                     <li key={item.itemId} className="flex py-4">
                       <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                         <img
