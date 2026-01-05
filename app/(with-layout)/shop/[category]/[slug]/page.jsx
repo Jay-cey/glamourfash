@@ -1,21 +1,29 @@
 import { StarIcon } from '@heroicons/react/20/solid'
-import {products, reviews} from '../../../../../data/products';
 import Link from 'next/link';
 import ProductForm from './product-form';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 export default async function ProductPage({ params }) {
     const { category, slug } = await params;
-    const product = products.find((p) => p.name.toLowerCase().replace(/\s+/g, '-') === slug && p.category.toLowerCase() === category.toLowerCase());
+    const product = await prisma.product.findUnique({
+      where: { slug },
+      include: { reviews: true }
+    });
     
     if (!product) {
       return <div className="p-10 text-red-500">Product not found.</div>
     }
 
-    const review = reviews[products.indexOf(product)];
+    const totalReviews = product.reviews.length;
+    const averageRating = totalReviews > 0 
+      ? product.reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews 
+      : 0;
+
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -115,7 +123,7 @@ export default async function ProductPage({ params }) {
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+            <p className="text-3xl tracking-tight text-gray-900">${product.price}</p>
 
             {/* Reviews */}
             <div className="mt-6">
@@ -128,16 +136,16 @@ export default async function ProductPage({ params }) {
                         key={rating}
                         aria-hidden="true"
                         className={classNames(
-                            review.average > rating ? 'text-gray-900' : 'text-gray-200',
+                            averageRating > rating ? 'text-gray-900' : 'text-gray-200',
                             'size-5 shrink-0',
                         )}
                         />
                     ))
                     }
                 </div>
-                <p className="sr-only">{review.average} out of 5 stars</p>
-                <a href={review.href} className="ml-3 text-sm font-medium text-primary-900 hover:text-primary-600">
-                  {review.totalCount} reviews
+                <p className="sr-only">{averageRating.toFixed(1)} out of 5 stars</p>
+                <a href="#" className="ml-3 text-sm font-medium text-primary-900 hover:text-primary-600">
+                  {totalReviews} reviews
                 </a>
               </div>
             </div>

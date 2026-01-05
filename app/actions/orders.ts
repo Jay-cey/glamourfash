@@ -1,85 +1,98 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { auth } from "@/auth";
+import { PrismaClient } from "@prisma/client";
+import { CartItem } from "@/app/types";
+import { z } from "zod";
 
-interface CartItem {
-  name: string;
-  price: string;
-  quantity: number;
-  images: { src: string; alt?: string }[];
-  category: string;
-  selectedSize?: { name: string } | null;
-  selectedColor?: { name: string } | null;
-}
+const prisma = new PrismaClient();
 
-interface Calculations {
-  subtotal: number;
-  shipping: number;
-  total: number;
-}
+const orderSchema = z.object({
+  email: z.string().email(),
+  address: z.string().min(1),
+  city: z.string().min(1),
+  postalCode: z.string().min(1),
+  cardNumber: z.string().min(1),
+  expiry: z.string().min(1),
+  cvc: z.string().min(1),
+});
 
-export async function createOrder(formData: FormData, cart: CartItem[], calculations: Calculations) {
-  const { subtotal, shipping, total } = calculations;
+export async function createOrder(formData: FormData, cart: CartItem[]) {
+  const session = await auth();
   
-  const rawFormData = {
-    email: formData.get("email") as string,
-    address: formData.get("address") as string,
-    city: formData.get("city") as string,
-    postalCode: formData.get("postalCode") as string,
+  const rawData = {
+    email: formData.get("email"),
+    address: formData.get("address"),
+    city: formData.get("city"),
+    postalCode: formData.get("postalCode"),
+    cardNumber: formData.get("cardNumber"),
+    expiry: formData.get("expiry"),
+    cvc: formData.get("cvc"),
   };
 
+  const validatedFields = orderSchema.safeParse(rawData);
+
+  if (!validatedFields.success) {
+    return { success: false, error: "Invalid form data" };
+  }
+
+  const { email, address, city, postalCode } = validatedFields.data;
+
+  // 1. Fetch products to get real prices and validate stock
+  const productIds = cart.map((item) => item.itemId);
+  const products = await prisma.product.findMany({
+    where: {
+      id: { in: productIds },
+    },
+  });
+
+  // 2. Calculate totals server-side
+  let subtotal = 0;
+  const orderItemsData = [];
+
+  for (const cartItem of cart) {
+    const product = products.find((p) => p.id === cartItem.itemId);
+    
+    if (!product) {
+      return { success: false, error: `Product not found: ${cartItem.name}` };
+    }
+
+    subtotal += product.price * cartItem.quantity;
+
+    orderItemsData.push({
+      name: product.name,
+      price: product.price,
+      quantity: cartItem.quantity,
+      image: product.images[0]?.src || "",
+      category: product.category,
+      size: cartItem.selectedSize?.name,
+    });
+  }
+
+  const shipping = subtotal > 100 ? 0 : 15;
+  const total = subtotal + shipping;
+
+  // 3. Create Order
   try {
     const order = await prisma.order.create({
       data: {
-        ...rawFormData,
+        email,
+        address,
+        city,
+        postalCode,
         subtotal,
         shipping,
         total,
+        status: "PENDING",
         items: {
-          create: cart.map((item) => ({
-            name: item.name,
-            price: item.price,
-            quantity: item.quantity,
-            image: item.images[0].src,
-            category: item.category,
-            size: item.selectedSize?.name || null,
-            color: item.selectedColor?.name || null,
-          })),
+          create: orderItemsData,
         },
       },
     });
+
     return { success: true, orderId: order.id };
   } catch (error) {
-    console.error("Failed to create order:", error);
+    console.error("Order creation failed:", error);
     return { success: false, error: "Failed to create order" };
-  }
-}
-
-export async function getOrder(orderId: string) {
-  if (!orderId) return null;
-  try {
-    const order = await prisma.order.findUnique({
-      where: { id: orderId },
-      include: { items: true },
-    });
-    return order;
-  } catch (error) {
-    console.error("Failed to fetch order:", error);
-    return null;
-  }
-}
-
-export async function getUserOrders(email: string) {
-  if (!email) return [];
-  try {
-    const orders = await prisma.order.findMany({
-      where: { email },
-      include: { items: true },
-      orderBy: { createdAt: 'desc' },
-    });
-    return orders;
-  } catch (error) {
-    console.error("Failed to fetch user orders:", error);
-    return [];
   }
 }

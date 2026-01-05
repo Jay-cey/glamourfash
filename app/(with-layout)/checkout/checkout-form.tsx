@@ -59,7 +59,7 @@ export default function CheckoutForm({ user }: CheckoutFormProps) {
     }
     
     try {
-      const result = await createOrder(formData, cart, { subtotal, shipping, total });
+      const result = await createOrder(formData, cart);
       
       if (result.success) {
         clearCart();
