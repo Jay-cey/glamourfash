@@ -16,7 +16,7 @@ export default function ProductForm({ product }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedSize) return;
-    addToCart(product, 1, selectedColor, selectedSize);
+    addToCart({ ...product, productId: product.id }, 1, selectedColor, selectedSize);
   };
 
   return (

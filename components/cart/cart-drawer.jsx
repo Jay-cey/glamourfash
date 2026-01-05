@@ -12,7 +12,8 @@ export default function CartDrawer() {
   // Automatically clear cart if data structure is invalid (e.g. old schema)
   useEffect(() => {
     const hasInvalidItems = cart.some((item) => 
-      item.selectedColor && (!item.selectedColor.classes || typeof item.selectedColor !== 'object')
+      (item.selectedColor && (!item.selectedColor.classes || typeof item.selectedColor !== 'object')) ||
+      !item.productId
     );
 
     if (hasInvalidItems && clearCart) {

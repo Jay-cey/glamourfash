@@ -39,7 +39,7 @@ export async function createOrder(formData: FormData, cart: CartItem[]) {
   const { email, address, city, postalCode } = validatedFields.data;
 
   // 1. Fetch products to get real prices and validate stock
-  const productIds = cart.map((item) => item.itemId);
+  const productIds = cart.map((item) => item.productId);
   const products = await prisma.product.findMany({
     where: {
       id: { in: productIds },
@@ -51,7 +51,7 @@ export async function createOrder(formData: FormData, cart: CartItem[]) {
   const orderItemsData = [];
 
   for (const cartItem of cart) {
-    const product = products.find((p) => p.id === cartItem.itemId);
+    const product = products.find((p) => p.id === cartItem.productId);
     
     if (!product) {
       return { success: false, error: `Product not found: ${cartItem.name}` };
@@ -94,5 +94,36 @@ export async function createOrder(formData: FormData, cart: CartItem[]) {
   } catch (error) {
     console.error("Order creation failed:", error);
     return { success: false, error: "Failed to create order" };
+  }
+}
+
+export async function getUserOrders(email: string | null | undefined) {
+  if (!email) {
+    return [];
+  }
+
+  try {
+    const orders = await prisma.order.findMany({
+      where: { email },
+      include: { items: true },
+      orderBy: { createdAt: "desc" },
+    });
+    return orders;
+  } catch (error) {
+    console.error("Failed to fetch orders:", error);
+    return [];
+  }
+}
+
+export async function getOrder(orderId: string) {
+  try {
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { items: true },
+    });
+    return order;
+  } catch (error) {
+    console.error("Failed to fetch order by ID:", error);
+    return null;
   }
 }
