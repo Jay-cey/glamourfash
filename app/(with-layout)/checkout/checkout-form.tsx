@@ -38,7 +38,7 @@ export default function CheckoutForm({ user }: CheckoutFormProps) {
   }, []);
 
   const subtotal = cart.reduce((total: number, item: CartItem) => {
-    const price = parseFloat(item.price.replace(/[^0-9.]/g, ""));
+    const price = typeof item.price === 'number' ? item.price : parseFloat(item.price.replace(/[^0-9.]/g, ""));
     return total + price * item.quantity;
   }, 0);
   

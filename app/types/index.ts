@@ -6,4 +6,5 @@ export interface CartItem {
   category: string;
   images: { src: string }[];
   selectedSize?: { name: string };
+  selectedColor?: { name: string; classes: string };
 }

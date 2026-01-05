@@ -1026,7 +1026,7 @@ async function main() {
   console.log(`Start seeding ...`)
   
   // Optional: Clear existing products to avoid duplicates
-  // await prisma.product.deleteMany({});
+  await prisma.product.deleteMany({});
 
   for (const p of products) {
     const product = await prisma.product.create({
@@ -1038,8 +1038,8 @@ async function main() {
         category: p.category,
         highlights: p.highlights || [],
         details: p.details || "",
-        sizes: p.sizes.map(s => s.name),
-        colors: p.colors.map(c => c.name),
+        sizes: p.sizes,
+        colors: p.colors,
         images: p.images.map(i => ({ src: i.src, alt: i.alt })),
         reviews: {
           create: [

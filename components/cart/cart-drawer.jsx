@@ -1,15 +1,27 @@
 "use client";
 
+import { useEffect } from "react";
 import { useCart } from "@/app/context/cart-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import Link from "next/link";
 
 export default function CartDrawer() {
-  const { cart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen } = useCart();
+  const { cart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, clearCart } = useCart();
+
+  // Automatically clear cart if data structure is invalid (e.g. old schema)
+  useEffect(() => {
+    const hasInvalidItems = cart.some((item) => 
+      item.selectedColor && (!item.selectedColor.classes || typeof item.selectedColor !== 'object')
+    );
+
+    if (hasInvalidItems && clearCart) {
+      clearCart();
+    }
+  }, [cart, clearCart]);
 
   const subtotal = cart.reduce((total, item) => {
-    const price = parseFloat(item.price.replace(/[^0-9.]/g, ""));
+    const price = typeof item.price === 'number' ? item.price : parseFloat(item.price.replace(/[^0-9.]/g, ""));
     return total + price * item.quantity;
   }, 0);
 
@@ -71,13 +83,15 @@ export default function CartDrawer() {
                       <div>
                         <div className="flex justify-between items-start">
                           <h3 className="font-medium text-gray-900">{item.name}</h3>
-                          <p className="font-semibold text-gray-900">{item.price}</p>
+                          <p className="font-semibold text-gray-900">
+                            {typeof item.price === 'number' ? `$${item.price.toFixed(2)}` : item.price}
+                          </p>
                         </div>
                         <p className="text-sm text-gray-500 mt-1">{item.category}</p>
                         <div className="flex gap-2 mt-2 text-sm text-gray-600">
                           {item.selectedColor && (
                             <span className="flex items-center gap-1">
-                              <span className={`w-3 h-3 rounded-full ${item.selectedColor.classes.split(' ')[0]}`} />
+                              <span className={`w-3 h-3 rounded-full ${item.selectedColor.classes?.split(' ')[0] || 'bg-gray-200'}`} />
                               {item.selectedColor.name}
                             </span>
                           )}

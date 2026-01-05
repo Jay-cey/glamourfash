@@ -87,6 +87,17 @@ type ProductImage {
   alt String
 }
 
+type ProductColor {
+  id      String
+  name    String
+  classes String
+}
+
+type ProductSize {
+  name    String
+  inStock Boolean
+}
+
 model Product {
   id          String         @id @default(auto()) @map("_id") @db.ObjectId
   name        String
@@ -97,8 +108,8 @@ model Product {
   details     String?
   images      ProductImage[]
   category    String
-  sizes       String[]
-  colors      String[]
+  sizes       ProductSize[]
+  colors      ProductColor[]
   reviews     Review[]
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
