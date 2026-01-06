@@ -8,13 +8,13 @@ import { z } from "zod";
 const prisma = new PrismaClient();
 
 const orderSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   address: z.string().min(1),
-  city: z.string().min(1),
+  city: z.string().min(2),
   postalCode: z.string().min(1),
   cardNumber: z.string().min(1),
-  expiry: z.string().min(1),
-  cvc: z.string().min(1),
+  expiry: z.string().length(4),
+  cvc: z.string().length(3),
 });
 
 export async function createOrder(formData: FormData, cart: CartItem[]) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaUser, FaShieldAlt, FaCog } from "react-icons/fa";
+import { FaUser, FaShieldAlt, FaCog, FaShoppingBag } from "react-icons/fa";
 import Link from "next/link";
 
 export default function AccountView({ user }) {
@@ -34,23 +34,40 @@ export default function AccountView({ user }) {
       animate="visible"
       className="max-w-4xl mx-auto p-6 space-y-8"
     >
-      <motion.div variants={itemVariants} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+      >
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Account</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+            Account
+          </h1>
           <p className="text-gray-500 mt-2">
             Manage your profile information and account preferences.
           </p>
         </div>
-        <Link href="/dashboard/account/settings">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg shadow-sm hover:bg-gray-50 transition-colors font-medium"
-          >
-            <FaCog className="w-4 h-4" />
-            <span>Settings</span>
-          </motion.button>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/dashboard/orders">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 py-2 bg-black text-white border border-transparent rounded-lg shadow-sm hover:bg-gray-800 transition-colors font-medium"
+            >
+              <FaShoppingBag className="w-4 h-4" />
+              <span>My Orders</span>
+            </motion.button>
+          </Link>
+          <Link href="/dashboard/account/settings">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg shadow-sm hover:bg-gray-50 transition-colors font-medium"
+            >
+              <FaCog className="w-4 h-4" />
+              <span>Settings</span>
+            </motion.button>
+          </Link>
+        </div>
       </motion.div>
 
       {/* Profile Section */}
@@ -62,7 +79,9 @@ export default function AccountView({ user }) {
           <div className="p-2 bg-blue-100 rounded-lg shadow-sm">
             <FaUser className="w-5 h-5 text-blue-600" />
           </div>
-          <h2 className="text-lg font-semibold text-gray-900">Profile Information</h2>
+          <h2 className="text-lg font-semibold text-gray-900">
+            Profile Information
+          </h2>
         </div>
 
         <div className="p-6 grid gap-6 md:grid-cols-2">
@@ -86,19 +105,25 @@ export default function AccountView({ user }) {
             </motion.div>
             <div>
               <p className="font-medium text-gray-900">Profile Picture</p>
-              <p className="text-sm text-gray-500">Managed by your login provider.</p>
+              <p className="text-sm text-gray-500">
+                Managed by your login provider.
+              </p>
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Full Name</label>
+            <label className="text-sm font-medium text-gray-700">
+              Full Name
+            </label>
             <div className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 items-center shadow-sm">
               {user.name || "Not provided"}
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Email Address</label>
+            <label className="text-sm font-medium text-gray-700">
+              Email Address
+            </label>
             <div className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 items-center shadow-sm">
               {user.email}
             </div>
