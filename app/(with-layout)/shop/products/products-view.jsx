@@ -26,6 +26,7 @@ export default function ProductsView({ products }) {
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortOption, setSortOption] = useState("default");
+  const [priceRange, setPriceRange] = useState(1000);
   const [isFilterOpen, setIsFilterOpen] = useState(false); // Mobile filter toggle
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
@@ -44,7 +45,9 @@ export default function ProductsView({ products }) {
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+    const price = parseFloat(product.price?.replace(/[^0-9.]/g, "") || 0);
+    const matchesPrice = price <= priceRange;
+    return matchesSearch && matchesCategory && matchesPrice;
   });
 
   // Sort logic
@@ -168,13 +171,21 @@ export default function ProductsView({ products }) {
 
               {/* Price Range (Visual Only for demo) */}
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Price Range</h3>
-                <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-black w-2/3 rounded-full" />
-                </div>
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+                  Max Price: ${priceRange}
+                </h3>
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  step="10"
+                  value={priceRange}
+                  onChange={(e) => setPriceRange(Number(e.target.value))}
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-black"
+                />
                 <div className="flex justify-between text-xs text-gray-500 mt-2">
                   <span>$0</span>
-                  <span>$500+</span>
+                  <span>$1000+</span>
                 </div>
               </div>
             </div>
@@ -212,7 +223,7 @@ export default function ProductsView({ products }) {
               >
                 <p>No products found matching your criteria.</p>
                 <button 
-                  onClick={() => { setSearchQuery(""); setSelectedCategory("All"); }}
+                  onClick={() => { setSearchQuery(""); setSelectedCategory("All"); setPriceRange(1000); }}
                   className="text-sm text-stone-900 underline hover:text-stone-600"
                 >
                   Clear Filters
