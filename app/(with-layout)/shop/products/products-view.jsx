@@ -25,6 +25,7 @@ export default function ProductsView({ products }) {
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortOption, setSortOption] = useState("default");
   const [isFilterOpen, setIsFilterOpen] = useState(false); // Mobile filter toggle
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
@@ -44,6 +45,18 @@ export default function ProductsView({ products }) {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
+  });
+
+  // Sort logic
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    const priceA = parseFloat(a.price?.replace(/[^0-9.]/g, "") || 0);
+    const priceB = parseFloat(b.price?.replace(/[^0-9.]/g, "") || 0);
+
+    if (sortOption === "price-asc") return priceA - priceB;
+    if (sortOption === "price-desc") return priceB - priceA;
+    if (sortOption === "name-asc") return a.name.localeCompare(b.name);
+    if (sortOption === "name-desc") return b.name.localeCompare(a.name);
+    return 0;
   });
 
   // Parallax for Hero
@@ -105,8 +118,16 @@ export default function ProductsView({ products }) {
                   placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all"
+                    className="w-full pl-10 pr-10 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all"
                 />
+                {searchQuery && (
+                  <button 
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black"
+                  >
+                    <FaTimes />
+                  </button>
+                )}
               </div>
 
               {/* Categories */}
@@ -128,6 +149,22 @@ export default function ProductsView({ products }) {
                   ))}
                 </div>
               </div>
+
+          {/* Sort By */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Sort By</h3>
+            <select
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+              className="w-full p-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all text-sm"
+            >
+              <option value="default">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A-Z</option>
+              <option value="name-desc">Name: Z-A</option>
+            </select>
+          </div>
 
               {/* Price Range (Visual Only for demo) */}
               <div>
@@ -161,7 +198,7 @@ export default function ProductsView({ products }) {
               className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10"
             >
               <AnimatePresence mode="popLayout">
-                {filteredProducts.map((product) => (
+              {sortedProducts.map((product) => (
                   <ProductCard key={product.name} product={product} />
                 ))}
               </AnimatePresence>
@@ -171,9 +208,15 @@ export default function ProductsView({ products }) {
               <motion.div 
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }}
-                className="text-center py-20 text-gray-500"
+                className="text-center py-20 text-gray-500 flex flex-col items-center gap-3"
               >
-                No products found matching your criteria.
+                <p>No products found matching your criteria.</p>
+                <button 
+                  onClick={() => { setSearchQuery(""); setSelectedCategory("All"); }}
+                  className="text-sm text-stone-900 underline hover:text-stone-600"
+                >
+                  Clear Filters
+                </button>
               </motion.div>
             )}
           </div>

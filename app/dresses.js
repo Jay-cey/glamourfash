@@ -5,7 +5,7 @@ const dresses = [
   { id: 4, name: "Cocktail", price: 60 },
   { id: 5, name: "Backless", price: 70 },
   { id: 6, name: "Bandeau", price: 35 },
-  { id: 7, name: "Benim", price: 45 },
+  { id: 7, name: "Denim", price: 45 },
   { id: 8, name: "Bodycon", price: 55 },
   { id: 9, name: "Blazer", price: 65 },
   { id: 10, name: "Maxi", price: 75 },

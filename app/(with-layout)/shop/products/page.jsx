@@ -50,7 +50,7 @@ function ProductsSkeleton() {
   )
 }
 
-export default function Example() {
+export default function ProductsPage() {
   return (
     <Suspense fallback={<ProductsSkeleton />}>
       <ProductsView products={product} />

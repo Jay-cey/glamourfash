@@ -47,6 +47,8 @@ export default function Navbar() {
         setScrolled(window.scrollY > 50);
       };
 
+      handleScroll();
+
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
     }
@@ -54,12 +56,14 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${
       scrolled || pathname !== "/" 
-        ? "bg-white/95 backdrop-blur-sm py-3 text-stone-900 shadow-sm" 
+        ? "bg-white/95 backdrop-blur-sm py-3 text-stone-900 shadow-sm top-0" 
         : "bg-transparent py-6 text-white"
     }`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
         <div className="flex-shrink-0">
-            <Image src={fash} alt="GlamourFash Logo" width={140} height={40} className="object-contain w-32 md:w-40"/>
+            <Link href="/">
+              <Image src={fash} alt="GlamourFash Logo" width={140} height={40} className="object-contain w-32 md:w-40"/>
+            </Link>
         </div>
 
         <div className="hidden md:flex items-center gap-8">

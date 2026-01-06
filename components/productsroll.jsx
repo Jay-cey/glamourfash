@@ -29,6 +29,9 @@ import img21 from "../public/images/knitted.jpeg"
 import img22 from "../public/images/polo1.jpeg"
 import Image from "next/image"
 import dresses from "../app/dresses"
+import Autoplay from "embla-carousel-autoplay"
+import { motion } from "framer-motion"
+import Link from "next/link"
 
 let imageList = [
   img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
@@ -50,18 +53,32 @@ const products = imageList.map((image, index) => {
 export default function Productsroll() {
     return (
     <Carousel
+      plugins={[
+        Autoplay({ delay: 3000 })
+      ]}
       opts={{
         align: "start",
+        containScroll: "trimSnaps",
       }}
       className="w-full max-w-sm md:max-w-3xl lg:max-w-6xl mx-auto"
     >
       <CarouselContent>
-        {products.map((product) => (
+        {products.map((product, index) => (
           <CarouselItem key={product.id} className="md:basis-1/3 lg:basis-1/4">
-            <div className="p-1 text-center text-char space-y-3">
-                <Image src={product.image} alt={product.name} className="object-cover rounded-lg"/>
-                <span className="">{product.displayName}</span>
-            </div>
+            <Link href={`/shop/products?search=${encodeURIComponent(product.name)}`}>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -10 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (index % 5) * 0.1 }}
+                className="p-1 text-center text-char space-y-3 cursor-pointer group">
+                  <div className="overflow-hidden rounded-lg">
+                    <Image src={product.image} alt={product.name} className="object-cover rounded-lg transition-transform duration-500 group-hover:scale-110"/>
+                  </div>
+                  <span className="block transition-colors duration-300 group-hover:text-stone-500">{product.displayName}</span>
+              </motion.div>
+            </Link>
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -71,4 +88,4 @@ export default function Productsroll() {
   )
 }
 
-export {imageList}
+export {imageList, products}
