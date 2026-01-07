@@ -1,6 +1,7 @@
 import { getOrder } from "@/app/actions/orders";
 import { OrderStatus } from "@prisma/client";
 import { CartCleaner } from "./cart-cleaner";
+import { RepayButton } from "./repay-button";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FaCheckCircle, FaTimesCircle, FaClock } from "react-icons/fa";
@@ -159,7 +160,8 @@ export default async function OrderConfirmationPage({
               </div>
             </div>
 
-            <div className="p-6 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="p-6 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
+              {isFailed && <RepayButton items={order.items} />}
               <Link
                 href="/shop/products"
                 className="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800 transition-colors w-full sm:w-auto"
