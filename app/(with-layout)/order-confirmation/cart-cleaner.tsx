@@ -8,8 +8,10 @@ export function CartCleaner() {
     const { clearCart } = useCart();
 
     useEffect(() => {
+        console.log("🛒 CartCleaner mounted - Attempting to clear cart");
         // Clear the cart when this component mounts (which implies successful order page load)
         clearCart();
+        console.log("🛒 CartCleaner finished");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

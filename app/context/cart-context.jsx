@@ -35,7 +35,7 @@ export function CartProvider({ children }) {
     setCart((prevCart) => {
       // Create a unique ID for the cart item based on product + variants
       const itemId = `${product.name}-${color?.id || 'default'}-${size?.name || 'default'}`;
-      
+
       const existingItemIndex = prevCart.findIndex((item) => item.itemId === itemId);
 
       if (existingItemIndex > -1) {
@@ -73,10 +73,22 @@ export function CartProvider({ children }) {
 
   const clearCart = () => {
     setCart([]);
+    // Direct sync to ensure persistence matches state immediately
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", "[]");
+    }
+  };
+
+  const replaceCart = (newItems) => {
+    setCart(newItems);
+    // Direct sync to ensure persistence works before navigation
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(newItems));
+    }
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, isCartOpen, setIsCartOpen, lastOrder, setLastOrder }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, replaceCart, isCartOpen, setIsCartOpen, lastOrder, setLastOrder }}>
       {children}
     </CartContext.Provider>
   );

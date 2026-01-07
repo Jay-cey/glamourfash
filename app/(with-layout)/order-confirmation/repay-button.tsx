@@ -10,28 +10,28 @@ interface RepayButtonProps {
 
 export function RepayButton({ items }: RepayButtonProps) {
     // @ts-ignore
-    const { clearCart, addToCart } = useCart();
+    // @ts-ignore
+    const { replaceCart } = useCart();
     const router = useRouter();
 
     const handleRepay = () => {
-        clearCart();
+        const newCartItems = items.map((item) => {
+            const colorObj = item.color ? { name: item.color, id: item.color } : undefined;
+            const sizeObj = item.size ? { name: item.size } : undefined;
+            const itemId = `${item.name}-${colorObj?.id || 'default'}-${sizeObj?.name || 'default'}`;
 
-        items.forEach((item) => {
-            // Reconstruct product object for addToCart
-            const product = {
+            return {
+                ...item, // Keep original properties
                 id: item.productId,
-                name: item.name,
-                price: item.price,
+                productId: item.productId,
                 images: [{ src: item.image, alt: item.name }],
-                category: item.category,
+                selectedColor: colorObj,
+                selectedSize: sizeObj,
+                itemId: itemId
             };
-
-            const color = item.color ? { name: item.color, id: item.color } : undefined;
-            const size = item.size ? { name: item.size } : undefined;
-
-            addToCart(product, item.quantity, color, size);
         });
 
+        replaceCart(newCartItems);
         router.push("/checkout");
     };
 
