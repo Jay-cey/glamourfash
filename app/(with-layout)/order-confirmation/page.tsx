@@ -89,7 +89,7 @@ export default async function OrderConfirmationPage({
   return (
     <>
       {hasSensitiveParams && <URLCleaner orderId={id} />}
-      {(redirect_status === "succeeded" || (order.status as OrderStatus) === "PAID" || (!redirect_status && (order.status as OrderStatus) === "PAID")) && (
+      {(isSuccess || isProcessing) && (
         <CartCleaner />
       )}
 
