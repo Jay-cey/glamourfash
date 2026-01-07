@@ -88,7 +88,9 @@ export default async function OrderConfirmationPage({
   return (
     <>
       {hasSensitiveParams && <URLCleaner orderId={id} />}
-      <CartCleaner />
+      {(redirect_status === "succeeded" || (order.status as OrderStatus) === "PAID" || (!redirect_status && (order.status as OrderStatus) === "PAID")) && (
+        <CartCleaner />
+      )}
 
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
