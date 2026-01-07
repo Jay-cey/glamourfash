@@ -1,9 +1,21 @@
-import Link from "next/link";
-import { FaCheckCircle } from "react-icons/fa";
 import { getOrder } from "@/app/actions/orders";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { FaCheckCircle, FaTimesCircle, FaClock } from "react-icons/fa";
 
-export default async function OrderConfirmationPage({ searchParams }) {
-  const { id } = await searchParams;
+export default async function OrderConfirmationPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const id = typeof resolvedSearchParams.id === "string" ? resolvedSearchParams.id : undefined;
+  const redirect_status = typeof resolvedSearchParams.redirect_status === "string" ? resolvedSearchParams.redirect_status : undefined;
+
+  if (!id) {
+    redirect("/");
+  }
+
   const order = await getOrder(id);
 
   if (!order) {
@@ -27,17 +39,41 @@ export default async function OrderConfirmationPage({ searchParams }) {
     );
   }
 
+  let statusTitle = "Order Confirmed!";
+  let statusMessage = "Thank you for your purchase.";
+  let StatusIcon = FaCheckCircle;
+  let iconColorClass = "text-green-600";
+  let iconBgClass = "bg-green-100";
+
+  // Check Stripe redirect status or fallback to DB status
+  if (redirect_status === "processing") {
+    statusTitle = "Payment Processing";
+    statusMessage = "Your payment is currently being processed. We'll update you when it completes.";
+    StatusIcon = FaClock;
+    iconColorClass = "text-blue-600";
+    iconBgClass = "bg-blue-100";
+  } else if (redirect_status === "requires_payment_method") {
+    statusTitle = "Payment Failed";
+    statusMessage = "Your payment was not successful. Please try again.";
+    StatusIcon = FaTimesCircle;
+    iconColorClass = "text-red-600";
+    iconBgClass = "bg-red-100";
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="p-8 text-center border-b border-gray-100">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-6">
-              <FaCheckCircle className="w-8 h-8 text-green-600" />
+            <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${iconBgClass} mb-6`}>
+              <StatusIcon className={`w-8 h-8 ${iconColorClass}`} />
             </div>
-            <h1 className="text-3xl font-serif text-gray-900 mb-2">Order Confirmed!</h1>
+            <h1 className="text-3xl font-serif text-gray-900 mb-2">{statusTitle}</h1>
             <p className="text-gray-500">
-              Thank you for your purchase. Your order ID is <span className="font-mono font-medium text-black">#{order.id}</span>
+              {statusMessage}
+              {(redirect_status === "succeeded" || order.status === "PAID" || (!redirect_status && order.status === "PAID")) && (
+                <> <br /> Your order ID is <span className="font-mono font-medium text-black">#{order.id}</span></>
+              )}
             </p>
           </div>
 
@@ -60,7 +96,7 @@ export default async function OrderConfirmationPage({ searchParams }) {
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3>{item.name}</h3>
-                          <p className="ml-4">{item.price}</p>
+                          <p className="ml-4">${item.price.toFixed(2)}</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">{item.category}</p>
                       </div>

@@ -100,6 +100,17 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${
       scrolled || pathname !== "/" 

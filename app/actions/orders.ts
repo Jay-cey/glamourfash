@@ -4,17 +4,16 @@ import { auth } from "@/auth";
 import { PrismaClient } from "@prisma/client";
 import { CartItem } from "@/app/types";
 import { z } from "zod";
+import Stripe from "stripe";
 
 const prisma = new PrismaClient();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const orderSchema = z.object({
   email: z.email(),
   address: z.string().min(1),
   city: z.string().min(2),
   postalCode: z.string().min(1),
-  cardNumber: z.string().min(1),
-  expiry: z.string().length(4),
-  cvc: z.string().length(3),
 });
 
 export async function createOrder(formData: FormData, cart: CartItem[]) {
@@ -25,9 +24,6 @@ export async function createOrder(formData: FormData, cart: CartItem[]) {
     address: formData.get("address"),
     city: formData.get("city"),
     postalCode: formData.get("postalCode"),
-    cardNumber: formData.get("cardNumber"),
-    expiry: formData.get("expiry"),
-    cvc: formData.get("cvc"),
   };
 
   const validatedFields = orderSchema.safeParse(rawData);
@@ -90,7 +86,14 @@ export async function createOrder(formData: FormData, cart: CartItem[]) {
       },
     });
 
-    return { success: true, orderId: order.id };
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: Math.round(total * 100),
+      currency: "usd",
+      metadata: { orderId: order.id },
+      automatic_payment_methods: { enabled: true },
+    });
+
+    return { success: true, orderId: order.id, clientSecret: paymentIntent.client_secret };
   } catch (error) {
     console.error("Order creation failed:", error);
     return { success: false, error: "Failed to create order" };
